@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('Liczba wszystkich postów: ') }}
+                    {{ $count }}
                 </div>
             </div>
         </div>
@@ -71,6 +72,7 @@
 
 @section('temp')
     @foreach ($posts as $post)
+        @if ($post->status == "published")
         <div class="commented-section mt-3">
             <div class="d-flex flex-row align-items-center commented-user">
                 <h5 class="mr-2">{{ $post->user }}</h5>
@@ -83,6 +85,20 @@
             <div class="reply-section">
             </div>
         </div>
+        @endif    
     @endforeach
 @endsection
+
+@section('commentery')
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center row">
+        <div class="d-flex flex-column col-md-8">
+            <div class="coment-bottom bg-white p-2 px-4 mt-0">
+                @yield('temp')
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
 

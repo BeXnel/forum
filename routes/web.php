@@ -19,6 +19,9 @@ Route::get('/', function () {
 });
 
 Route::get('/posty', 'App\Http\Controllers\Posty@show');
+Route::post('/posty/opublikuj', "App\Http\Controllers\Posty@publish");
+Route::post('/posty/usun', "App\Http\Controllers\Posty@delete");
+
 Route::post('/home','App\Http\Controllers\HomeController@store');
 
 Auth::routes();
