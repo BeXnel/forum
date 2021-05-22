@@ -78,6 +78,11 @@
             </div>
         </nav>
     </div>
-    @yield('panel')
+    @if (Auth::user()->name == 'admin')
+        @yield('admin_panel')
+    @else
+        @yield('user_panel')
+    @endif
+
 </body>
 </html>

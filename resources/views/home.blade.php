@@ -24,7 +24,7 @@
 @endsection
 
 @section('comment')
-<div class="container mt-5 mb-5">
+<div class="container mt-5 mb-3">
     <div class="d-flex justify-content-center row">
         <div class="d-flex flex-column col-md-8">
             <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
@@ -73,7 +73,7 @@
 @section('temp')
     @foreach ($posts as $post)
         @if ($post->status == "published")
-        <div class="commented-section mt-3">
+        <div class="commented-section mt-2 bg-light p-2 rounded">
             <div class="d-flex flex-row align-items-center commented-user">
                 <h5 class="mr-2">{{ $post->user }}</h5>
                 <span class="dot mb-1"></span>
@@ -90,10 +90,10 @@
 @endsection
 
 @section('commentery')
-<div class="container mt-5 mb-5">
+<div class="container mt-3 mb-5">
     <div class="d-flex justify-content-center row">
         <div class="d-flex flex-column col-md-8">
-            <div class="coment-bottom bg-white p-2 px-4 mt-0">
+            <div class="coment-bottom p-2 px-4 mt-0">
                 @yield('temp')
             </div>
         </div>

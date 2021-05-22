@@ -29,8 +29,7 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::all();
-        $count = Post::count('id');
-
+        $count = Post::where('status', 'published')->count('id');
 
         return view('home', compact('posts'), ['count' => $count]);
     }
