@@ -30,4 +30,11 @@ class Posty extends Controller
 
         return redirect('/posty');
     }
+
+    public function unpublish(Request $request)
+    {
+        Post::where('id', $request->id)->update(['status' => 'draft']);
+        
+        return redirect('/posty');
+    }
 }

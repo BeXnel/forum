@@ -23,11 +23,19 @@
                 <td class="border border-dark text-center">{{ $post->created_at }}</td>
                 <td class="border border-dark text-center">{{ $post->updated_at }}</td>
                 <td class=" text-center">
+                @if ($post->status == 'published')
+                <form action="/posty/cofnij_publikacje" method="post">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $post->id }}">
+                    <input type="submit" class="btn btn-secondary" value="Cofnij">
+                </form>
+                @else
                     <form action="/posty/opublikuj" method="post">
                         @csrf
                         <input type="hidden" name="id" value="{{ $post->id }}">
                         <input type="submit" class="btn btn-secondary" value="Opublikuj">
                     </form>
+                @endif
                 </td>
                 <td class=" text-center">
                     <form action="/posty/edycja" method="post">
