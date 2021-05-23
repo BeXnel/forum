@@ -77,7 +77,7 @@
             <div class="d-flex flex-row align-items-center commented-user">
                 <h5 class="mr-2">{{ $post->user }}</h5>
                 <span class="dot mb-1"></span>
-                <span class="mb-1 ml-2">{{ $post->created_at }}</span>
+                <span class="mb-1 ml-2">{{ \Illuminate\Support\Str::limit($post->created_at, 16, '') }}</span>
             </div>
             <div class="comment-text-sm">
                 <span>{{ $post->comment }}</span>

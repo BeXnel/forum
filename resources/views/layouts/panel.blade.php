@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="bg-dark">
-    <div id="app" class="bg-dark">
+    <div id="app" class="bg-dark mb-4">
         <nav class="navbar navbar-expand-md navbar-light bg-secondary shadow-sm">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ url('/home') }}">
@@ -57,6 +57,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('konto') }}">
+                                        Konto
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ url('posty') }}">
                                        Posty
                                     </a>

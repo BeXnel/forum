@@ -20,11 +20,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="bg-dark">
-    @yield('error')
     <div id="app" class="bg-dark">
         <nav class="navbar navbar-expand-md navbar-light bg-secondary shadow-sm">
             <div class="container">
-                <a class="navbar-brand text-white" href="{{ url('/') }}">
+                <a class="navbar-brand text-white" href="{{ url('/home') }}">
                     Forum
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -42,13 +41,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Zaloguj') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Zaloguj') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Zarejestruj') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Zarejestruj') }}</a>
                                 </li>
                             @endif
                         @else
@@ -61,7 +60,7 @@
                                     <a class="dropdown-item" href="{{ url('konto') }}">
                                         Konto
                                     </a>
-                                    
+
                                     <a class="dropdown-item" href="{{ url('posty') }}">
                                        Posty
                                     </a>
@@ -82,15 +81,7 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-5">
-            @yield('content')
-
-            @yield('comment')
-
-            @yield('commentery')
-
-        </main>
     </div>
+    @yield('user_panel')
 </body>
 </html>
