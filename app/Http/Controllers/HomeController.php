@@ -32,8 +32,9 @@ class HomeController extends Controller
         $count = Post::where('status', 'published')->count('id');
         $views = Post::sum('views');
         $max = Post::max('views');
+        $popular = Post::where('views', $max)->get();
 
-        return view('home', compact('posts'), ['count' => $count, 'views' => $views, 'max' => $max]);
+        return view('home', compact('posts'), ['count' => $count, 'views' => $views, 'max' => $max, 'popular' => $popular]);
     }
 
     public function store(Request $request)

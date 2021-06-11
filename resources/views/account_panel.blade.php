@@ -1,4 +1,4 @@
-@extends('layouts.account')
+@extends('layouts.app')
 
 @section('user_panel')
     @foreach ($data as $item)

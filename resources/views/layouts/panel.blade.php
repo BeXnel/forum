@@ -21,6 +21,7 @@
 </head>
 <body class="bg-dark">
     <div id="app" class="bg-dark mb-4">
+        <div class="sticky-top" style="opacity: 0.9">
         <nav class="navbar navbar-expand-md navbar-light bg-secondary shadow-sm">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ url('/home') }}">
@@ -120,11 +121,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('posty/fotografia') }}">
+                                    <a class="dropdown-item" href="{{ url('posty/kategoria/fotografia') }}">
                                         Posty
                                     </a>
                                     
-                                    <a class="dropdown-item" href="{{ url('posty/fotografia/statystyki') }}">
+                                    <a class="dropdown-item" href="{{ url('posty/statystyki/fotografia') }}">
                                        Statystyki
                                     </a>
                                 </div>
@@ -135,11 +136,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('posty/film') }}">
+                                    <a class="dropdown-item" href="{{ url('posty/kategoria/film') }}">
                                         Posty
                                     </a>
                                     
-                                    <a class="dropdown-item" href="{{ url('posty/film/statystyki') }}">
+                                    <a class="dropdown-item" href="{{ url('posty/statystyki/film') }}">
                                         Statystyki
                                     </a>
                                 </div>
@@ -150,11 +151,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('posty/muzyka') }}">
+                                    <a class="dropdown-item" href="{{ url('posty/kategoria/muzyka') }}">
                                         Posty
                                     </a>
                                     
-                                    <a class="dropdown-item" href="{{ url('posty/muzyka/statystyki') }}">
+                                    <a class="dropdown-item" href="{{ url('posty/statystyki/muzyka') }}">
                                         Statystyki
                                     </a>
                                 </div>
@@ -165,11 +166,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('posty/informatyka') }}">
+                                    <a class="dropdown-item" href="{{ url('posty/kategoria/informatyka') }}">
                                         Posty
                                     </a>
                                     
-                                    <a class="dropdown-item" href="{{ url('posty/informatyka/statystyki') }}">
+                                    <a class="dropdown-item" href="{{ url('posty/statystyki/informatyka') }}">
                                        Statystyki
                                     </a>
                                 </div>
@@ -178,6 +179,7 @@
                 </div>
             </div>
         </nav>   
+        </div>
         @endif
     </div>
     @if( Auth::check())

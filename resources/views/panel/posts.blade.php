@@ -3,16 +3,17 @@
 @section('admin_panel')
 <table class="table table-user-information bg-light align-middle m-auto align-center">
     <tr class="border ">
-        <td class="border text-center font-weight-bold p-1">ID</td>
-        <td class="border text-center font-weight-bold p-1">Status</td>
-        <td class="border text-center font-weight-bold p-1">Użytkownik</td>
-        <td class="border text-center font-weight-bold p-1">Email</td>
-        <td class="border text-center font-weight-bold p-1">Temat</td>
-        <td class="border text-center font-weight-bold p-1">Kategoria</td>
-        <td class="border text-center font-weight-bold p-1">Treść</td>
-        <td class="border text-center font-weight-bold p-1">Data dodania</td>
-        <td class="border text-center font-weight-bold p-1">Data modyfikacji</td>
-        <td class="text-center font-weight-bold p-1" colspan="3">Zarządzaj postem</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">ID</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Status</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Użytkownik</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Email</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Temat</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Kategoria</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Treść</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Wyświetlenia</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Data dodania</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Data modyfikacji</td>
+        <td class="text-center font-weight-bold p-1 align-middle" colspan="3" >Zarządzaj postem</td>
         </tr>
     @foreach ($posts as $post)
         <tr class="border">
@@ -27,6 +28,7 @@
             <td class="border text-center align-middle">{{ $post->topic }}</td>
             <td class="border text-center align-middle">{{ $post->category }}</td>
             <td class="border text-center align-middle">{{ $post->content }}</td>
+            <td class="border text-center align-middle">{{ $post->views }}</td>
             <td class="border text-center align-middle">{{ $post->created_at }}</td>
             <td class="border text-center align-middle">{{ $post->updated_at }}</td>
             <td class="text-center p-1 align-middle">
@@ -78,6 +80,7 @@
         <td class="border text-center font-weight-bold p-1">Temat</td>
         <td class="border text-center font-weight-bold p-1">Kategoria</td>
         <td class="border text-center font-weight-bold p-1">Treść</td>
+        <td class="border text-center font-weight-bold p-1">Wyświetlenia</td>
         <td class="border text-center font-weight-bold p-1">Data dodania</td>
         <td class="border text-center font-weight-bold p-1">Data modyfikacji</td>
         <td class="text-center font-weight-bold p-1" colspan="3">Zarządzaj postem</td>
@@ -96,12 +99,13 @@
             <td class="border text-center align-middle">{{ $post->topic }}</td>
             <td class="border text-center align-middle">{{ $post->category }}</td>
             <td class="border text-center align-middle">{{ $post->content }}</td>
+            <td class="border text-center align-middle">{{ $post->views }}</td>
             <td class="border text-center align-middle">{{ $post->created_at }}</td>
             <td class="border text-center align-middle">{{ $post->updated_at }}</td>
 
             <!--Edytuj-->
             <td class="text-center p-1 align-middle">
-                <form action="/posty/edytuj" method="post">
+                <form action="/posty/edycja" method="post">
                     @csrf
                     <input type="hidden" name="id" value="{{ $post->id }}">
                     <input type="submit" class="btn btn-secondary form-control bg-dark" value="Edytuj">

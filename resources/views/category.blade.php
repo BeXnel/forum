@@ -19,17 +19,16 @@
                                 <h2>{{ $post->topic }}</h2><h5 class="ml-2 text-secondary mt-2">{{ $post->user }}</h5>
                             </div>
                             <div class="d-flex flex-row align-items-center align-content-center post-title">
-                                <span class="bdge mr-1" data-text="">{{ $post->category }}</span>
+                                <span class="mr-1 text-uppercase text-primary" data-text="">{{ $post->category }}</span>
                                 <span class="mr-2 dot"></span><span>{{ \Illuminate\Support\Str::limit($post->created_at, 16, '') }}</span>
                             </div>
                         </div>
                     </div>
         
                     <div class="coment-bottom bg-light p-2 px-4 rounded-bottom">
-                        <h5>{{ \Illuminate\Support\Str::limit($post->content, 32, '') }}...</h5>
-                        <form action="/posty/kategoria/{{ $post->category }}" method="post">
+                        <h5>{{ \Illuminate\Support\Str::limit($post->content, 40, '') }}...</h5>
+                        <form action="{{ $post->category }}/{{ $post->id }}" method="post">
                             @csrf
-                            <input type="hidden" name="id" value="{{ $post->id }}">
                             <input class="btn text-info float-right" type="submit" value="Zobacz więcej">
                         </form>
                     </div>

@@ -3,14 +3,17 @@
 @section('admin_post_edit_panel')
 <table class="table table-user-information bg-light align-middle m-auto align-center">
     <tr class="border ">
-        <td class="border text-center font-weight-bold p-1">ID</td>
-        <td class="border text-center font-weight-bold p-1">Status</td>
-        <td class="border text-center font-weight-bold p-1">Użytkownik</td>
-        <td class="border text-center font-weight-bold p-1">Email</td>
-        <td class="border text-center font-weight-bold p-1">Treść</td>
-        <td class="border text-center font-weight-bold p-1">Data dodania</td>
-        <td class="border text-center font-weight-bold p-1">Data modyfikacji</td>
-        <td class="text-center font-weight-bold p-1" colspan="3">Zarządzaj postem</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">ID</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Status</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Użytkownik</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Email</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Temat</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Kategoria</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Treść</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Wyświetlenia</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Data dodania</td>
+        <td class="border text-center font-weight-bold p-1 align-middle">Data modyfikacji</td>
+        <td class="text-center font-weight-bold p-1 align-middle" colspan="3">Zarządzaj postem</td>
         </tr>
     @foreach ($posts as $post)
         <tr class="border">
@@ -22,7 +25,10 @@
             @endif
             <td class="border text-center align-middle">{{ $post->user }}</td>
             <td class="border text-center align-middle">{{ $post->email }}</td>
-            <td class="border text-center align-middle">{{ $post->comment }}</td>
+            <td class="border text-center align-middle">{{ $post->topic }}</td>
+            <td class="border text-center align-middle">{{ $post->category }}</td>
+            <td class="border text-center align-middle">{{ $post->content }}</td>
+            <td class="border text-center align-middle">{{ $post->views }}</td>
             <td class="border text-center align-middle">{{ $post->created_at }}</td>
             <td class="border text-center align-middle">{{ $post->updated_at }}</td>
             <td class="text-center p-1 align-middle">
@@ -71,7 +77,10 @@
         <td class="border text-center font-weight-bold p-1">Status</td>
         <td class="border text-center font-weight-bold p-1">Użytkownik</td>
         <td class="border text-center font-weight-bold p-1">Email</td>
-        <td class="border text-center font-weight-bold p-1">Treść</td>
+        <td class="border text-center font-weight-bold p-1">Temat</td>
+        <td class="border text-center font-weight-bold p-1">Kategoria</td>
+        <td class="border text-center font-weight-bold p-1 w-25">Treść</td>
+        <td class="border text-center font-weight-bold p-1">Wyświetlenia</td>
         <td class="border text-center font-weight-bold p-1">Data dodania</td>
         <td class="border text-center font-weight-bold p-1">Data modyfikacji</td>
         <td class="text-center font-weight-bold p-1" colspan="3">Zarządzaj postem</td>
@@ -87,18 +96,20 @@
             @endif
             <td class="border text-center align-middle">{{ $post->user }}</td>
             <td class="border text-center align-middle">{{ $post->email }}</td>
+            <td class="border text-center align-middle">{{ $post->topic }}</td>
+            <td class="border text-center align-middle">{{ $post->category }}</td>
             @foreach ($id as $item_id)
                 @if ($post->id == $item_id->id)
                     <td class="border text-center align-middle">
-                        <form id="zapisz" action="/posty/edytuj/zapisz" method="post">
+                        <form id="zapisz" action="/posty/edycja/zapisz" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{ $post->id }}">
-                            <input class="form-control" type="text" id="comment" name="comment" value="{{ $post->comment }}">
+                            <textarea class="form-control h-100" type="text" id="comment" name="content">{{ $post->content }}</textarea>
                         </form>
                     </td>
                 @else
                     <td class="border text-center align-middle">
-                        {{ $post->comment }}
+                        {{ $post->content }}
                     </td>
                 @endif
             @endforeach
@@ -111,7 +122,7 @@
                         @if ($post->id == $item_id->id)
                             <input type="submit" class="btn btn-secondary form-control bg-success" form="zapisz" value="Zapisz">
                         @else
-                        <form action="/posty/edytuj" method="post">
+                        <form action="/posty/edycja" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{ $post->id }}">
                             <input type="submit" class="btn btn-secondary form-control bg-dark" value="Edytuj">

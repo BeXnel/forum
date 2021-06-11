@@ -19,20 +19,13 @@ class Posty extends Controller
         }else{
             return view('not_logged_in');
         }
-        
     }
 
-    public function show_more($category, Request $request)
+    public function show_more($category, $id)
     {
-        $request->validate(
-            [
-                'id' => 'required'
-            ]
-            );
-        $temp = $request->get('id');
-        
+        Post::where('id', $id)->increment('views', 1);
 
-        $posts = Post::where('category', $category)->where('status', 'published')->where('id', $temp)->get();
+        $posts = Post::where('category', $category)->where('status', 'published')->where('id', $id)->get();
         $posts_count = Post::where('category', $category)->where('status', 'published')->count('id');
         
         if(Auth::check())
@@ -40,9 +33,7 @@ class Posty extends Controller
             return view('category_show_more', compact('posts'), compact('posts_count'));
         }else{
             return view('not_logged_in');
-        }
-
-        
+        }     
     }
 
     public function category($category)
@@ -56,8 +47,28 @@ class Posty extends Controller
         }else{
             return view('not_logged_in');
         }
-        
-        
+    }
+
+    public function stats($category)
+    {
+        $count = Post::where('category', $category)->count('id');
+        $published = Post::where('category', $category)->where('status', 'published')->count('id');
+        $unpublished = Post::where('category', $category)->where('status', 'draft')->count('id');
+        $views = Post::where('category', $category)->sum('views');
+
+        if(Auth::check())
+        {
+            return view('stats', 
+        [
+            'count' => $count, 
+            'published' => $published, 
+            'unpublished' => $unpublished, 
+            'views' => $views,
+            'category' => $category
+        ]);
+        }else{
+            return view('not_logged_in');
+        }   
     }
 
     public function publish(Request $request)
@@ -81,11 +92,11 @@ class Posty extends Controller
         $request->validate(
             [
                 'id' => 'required',
-                'comment' => 'required|min:3'
+                'content' => 'required|min:3'
             ]
             );
             Post::where('id', $request->id)->update(array(
-                'comment' => $request->comment, 
+                'content' => $request->content, 
                 'status' => 'draft'));
 
             return redirect('/posty');

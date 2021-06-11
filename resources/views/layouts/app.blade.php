@@ -19,10 +19,17 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        body::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
 </head>
 <body class="bg-dark">
     @yield('error')
     <div id="app" class="bg-dark">
+        <div class="sticky-top" style="opacity: 0.9">
         <nav class="navbar navbar-expand-md navbar-light bg-secondary shadow-sm">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ url('/home') }}">
@@ -103,10 +110,6 @@
 
         <nav class="navbar navbar-expand-md navbar-light bg-secondary shadow-sm border-top border-light" style="height: 4vh">
             <div class="container">
-                
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -171,7 +174,7 @@
                                         Posty
                                     </a>
                                     
-                                    <a class="dropdown-item" href="{{ url('posty/informatyka/statystyki') }}">
+                                    <a class="dropdown-item" href="{{ url('posty/statystyki/informatyka') }}">
                                        Statystyki
                                     </a>
                                 </div>
@@ -180,6 +183,7 @@
                 </div>
             </div>
         </nav>   
+    </div>
         @endif
 
         <main class="py-5">
@@ -196,6 +200,12 @@
             @yield('show-category')
 
             @yield('search')
+
+            @yield('popular')
+
+            @yield('stats')
+
+            @yield('user_panel')
 
         </main>
     </div>

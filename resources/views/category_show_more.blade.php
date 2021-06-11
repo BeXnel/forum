@@ -19,7 +19,7 @@
                                 <h2>{{ $post->topic }}</h2><h5 class="ml-2 text-secondary mt-2">{{ $post->user }}</h5>
                             </div>
                             <div class="d-flex flex-row align-items-center align-content-center post-title">
-                                <span class="bdge mr-1" data-text="">{{ $post->category }}</span>
+                                <span class="mr-1 text-uppercase text-primary" data-text="">{{ $post->category }}</span>
                                 <span class="mr-2 dot"></span><span>{{ \Illuminate\Support\Str::limit($post->created_at, 16, '') }}</span>
                             </div>
                         </div>
@@ -46,7 +46,6 @@
                         @csrf
                     <div class="bg-light p-2 px-4 rounded-bottom">
                         <div class="input-group p-1">
-                                <input type="text">
                                 <input type="text" class="form-control" placeholder="Dodaj komentarz..." aria-label="Recipient's username" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                               <button class="btn btn-outline-secondary btn-dark text-light" type="submit" form="comment">Skomentuj</button>
