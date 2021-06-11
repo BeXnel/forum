@@ -41,16 +41,32 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Zaloguj') }}</a>
+                                    <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Zaloguj') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Zarejestruj') }}</a>
+                                    <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Zarejestruj') }}</a>
                                 </li>
                             @endif
                         @else
+                        <!--Wyszukiwarka-->
+                        <div class="row mr-5">
+                            <div id="custom-search-input">
+                                <div class="input-group col-md-12">
+                                    <form action="{{ url('home/search') }}" method="post" id="search"> 
+                                        @csrf
+                                        <input name="query" type="text" class="search-query form-control bg-light" placeholder="Wyszukaj..." />
+                                    </form>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-dark" type="submit" form="search">
+                                            Wyszukaj
+                                        </button>
+                                    </span>               
+                                </div>
+                            </div>
+                        </div>
                             <li class="nav-item dropdown text-white">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

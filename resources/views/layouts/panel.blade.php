@@ -51,6 +51,22 @@
                                 </li>
                             @endif
                         @else
+                        <!--Wyszukiwarka-->
+                        <div class="row mr-5">
+                            <div id="custom-search-input">
+                                <div class="input-group col-md-12">
+                                    <form action="{{ url('home/search') }}" method="post" id="search"> 
+                                        @csrf
+                                        <input name="query" type="text" class="search-query form-control bg-light" placeholder="Wyszukaj..." />
+                                    </form>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-dark" type="submit" form="search">
+                                            Wyszukaj
+                                        </button>
+                                    </span>               
+                                </div>
+                            </div>
+                        </div>
                             <li class="nav-item dropdown text-white">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -81,12 +97,102 @@
                 </div>
             </div>
         </nav>
-    </div>
-    @if (Auth::user()->name == 'admin')
-        @yield('admin_panel')
-    @else
-        @yield('user_panel')
-    @endif
+        @if (Auth::check())
 
+        <nav class="navbar navbar-expand-md navbar-light bg-secondary shadow-sm border-top border-light" style="height: 4vh">
+            <div class="container">
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav ">
+                        
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav m-auto text-uppercase">
+                            <li class="nav-item dropdown text-white">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Fotografia
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('posty/fotografia') }}">
+                                        Posty
+                                    </a>
+                                    
+                                    <a class="dropdown-item" href="{{ url('posty/fotografia/statystyki') }}">
+                                       Statystyki
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown text-white ml-5">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Film
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('posty/film') }}">
+                                        Posty
+                                    </a>
+                                    
+                                    <a class="dropdown-item" href="{{ url('posty/film/statystyki') }}">
+                                        Statystyki
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown text-white ml-5">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Muzyka
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('posty/muzyka') }}">
+                                        Posty
+                                    </a>
+                                    
+                                    <a class="dropdown-item" href="{{ url('posty/muzyka/statystyki') }}">
+                                        Statystyki
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown text-white ml-5">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Informatyka
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('posty/informatyka') }}">
+                                        Posty
+                                    </a>
+                                    
+                                    <a class="dropdown-item" href="{{ url('posty/informatyka/statystyki') }}">
+                                       Statystyki
+                                    </a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>   
+        @endif
+    </div>
+    @if( Auth::check())
+        @if (Auth::user()->name == 'admin' )
+            @yield('admin_panel')
+        @else
+            @yield('user_panel')
+        @endif
+    @endif
+    @if( Auth::check())
+        @if (Auth::user()->name == 'admin' )
+            @yield('admin_post_edit_panel')
+        @else
+            @yield('user_post_edit_panel')
+        @endif
+    @endif
 </body>
 </html>

@@ -19,13 +19,19 @@ Route::get('/', function () {
 });
 
 Route::get('/posty', 'App\Http\Controllers\Posty@show');
+Route::get('/posty/kategoria/{category}', 'App\Http\Controllers\Posty@category');
+Route::post('/posty/kategoria/{category}', 'App\Http\Controllers\Posty@show_more');
+
 Route::post('/posty/opublikuj', "App\Http\Controllers\Posty@publish");
 Route::post('/posty/cofnij_publikacje', "App\Http\Controllers\Posty@unpublish");
+Route::post('/posty/edytuj', "App\Http\Controllers\Posty@edit");
+Route::post('/posty/edytuj/zapisz', "App\Http\Controllers\Posty@save");
 Route::post('/posty/usun', "App\Http\Controllers\Posty@delete");
 
 Route::get('konto', "App\Http\Controllers\AccountController@show");
 
 Route::post('/home','App\Http\Controllers\HomeController@store');
+Route::post('/home/search','App\Http\Controllers\HomeController@search');
 
 Auth::routes();
 
