@@ -27,7 +27,21 @@
             <td class="border text-center align-middle">{{ $post->email }}</td>
             <td class="border text-center align-middle">{{ $post->topic }}</td>
             <td class="border text-center align-middle">{{ $post->category }}</td>
-            <td class="border text-center align-middle">{{ $post->content }}</td>
+            @foreach ($id as $item_id)
+                @if ($post->id == $item_id->id)
+                    <td class="border text-center align-middle">
+                        <form id="zapisz" action="/posty/edycja/zapisz" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $post->id }}">
+                            <textarea class="form-control h-100" type="text" id="comment" name="content">{{ $post->content }}</textarea>
+                        </form>
+                    </td>
+                @else
+                    <td class="border text-center align-middle">
+                        {{ $post->content }}
+                    </td>
+                @endif
+            @endforeach
             <td class="border text-center align-middle">{{ $post->views }}</td>
             <td class="border text-center align-middle">{{ $post->created_at }}</td>
             <td class="border text-center align-middle">{{ $post->updated_at }}</td>
@@ -51,12 +65,32 @@
 
             <!--Edytuj-->
             <td class="text-center p-1 align-middle">
-                <form action="/posty/edycja" method="post">
+                @foreach ($id as $item_id)
+                    @if ($post->id == $item_id->id)
+                        <input type="submit" class="btn btn-secondary form-control bg-success" form="zapisz" value="Zapisz">
+                    @else
+                    <form action="/posty/edycja" method="post">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $post->id }}">
+                        <input type="submit" class="btn btn-secondary form-control bg-dark" value="Edytuj">
+                    </form>
+                    @endif
+                @endforeach
+            </form>
+        </td>
+        <!--Anuluj-->
+        <td class="text-center p-1 align-middle">
+            @foreach ($id as $item_id)
+                @if ($post->id == $item_id->id)
+                <form action="/posty">
                     @csrf
-                    <input type="hidden" name="id" value="{{ $post->id }}">
-                    <input type="submit" class="btn btn-secondary form-control bg-dark" value="Edytuj">
+                    <input type="submit" class="btn btn-secondary form-control bg-warning text-dark" value="Anuluj">
                 </form>
-            </td>
+                @else
+                @endif
+            @endforeach
+        </form>
+    </td>
 
             <!--Usuń-->
             <td class="text-center p-1 align-middle">
@@ -65,11 +99,13 @@
                     <input type="hidden" name="id" value="{{ $post->id }}">
                     <input type="submit" class="btn btn-secondary form-control bg-danger" value="Usuń">
                 </form>
+            </td>
         </tr>
     @endforeach
 </table>
 @endsection
 
+<!--USER-->
 @section('user_post_edit_panel')
 <table class="table table-user-information bg-light align-middle m-auto align-center">
     <tr class="border ">

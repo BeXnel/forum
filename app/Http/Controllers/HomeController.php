@@ -64,10 +64,10 @@ class HomeController extends Controller
                 'query' => 'required'
             ]
             );
-        $temp = $request->get('query');
-        $search = Post::where('content', 'like', "%$temp%")->orWhere('topic', 'like', "%$temp%")->get();
-        $search_count = Post::where('content', 'like', "%$temp%")->orWhere('topic', 'like', "%$temp%")->count();
+        $search_query = $request->get('query');
+        $search = Post::select()->where(DB::raw("(status = 'published' and topic like '%$search_query%') OR (status = 'published' and content like '%$search_query%')"))->get();
 
+        $search_count = Post::select()->where(DB::raw("(status = 'published' and topic like '%$search_query%') OR (status = 'published' and content like '%$search_query%')"))->count();
         return view('search', compact('search'), compact('search_count'));
     }
 

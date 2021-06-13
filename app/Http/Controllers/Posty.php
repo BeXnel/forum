@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\DB;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Comment;
 
 use Illuminate\Http\Request;
 
@@ -27,10 +28,12 @@ class Posty extends Controller
 
         $posts = Post::where('category', $category)->where('status', 'published')->where('id', $id)->get();
         $posts_count = Post::where('category', $category)->where('status', 'published')->count('id');
+
+        $comments = Comment::where('id_post', $id)->get();
         
         if(Auth::check())
         {
-            return view('category_show_more', compact('posts'), compact('posts_count'));
+            return view('category_show_more', ['comments' => $comments, 'posts' => $posts, 'posts_count' => $posts_count]);
         }else{
             return view('not_logged_in');
         }     
@@ -47,6 +50,16 @@ class Posty extends Controller
         }else{
             return view('not_logged_in');
         }
+    }
+
+    public function comment(Request $request, $category)
+    {
+        $request -> validate([
+            'id_post' => 'required',
+            'comment' => 'required|min:3'
+        ]);
+        Comment::create($request->all());
+        return redirect()->route('show_more', ['category' => $category, 'id' => $request->id_post]);
     }
 
     public function stats($category)

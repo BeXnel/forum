@@ -18,6 +18,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        body::-webkit-scrollbar {
+            display: none;
+            overflow-x: hidden;
+        }
+    </style>
+    </style>
 </head>
 <body class="bg-dark">
     <div id="app" class="bg-dark mb-4">
@@ -196,5 +204,6 @@
             @yield('user_post_edit_panel')
         @endif
     @endif
+    <footer class="blockquote-footer">Bartosz Poszelężny ©</footer>
 </body>
 </html>

@@ -190,5 +190,6 @@
             @yield('user_panel')
         </main>
     </div>
+    <footer class="blockquote-footer">Bartosz Poszelężny ©</footer>
 </body>
 </html>

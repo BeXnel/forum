@@ -20,7 +20,7 @@
                                 <h2>{{ $post->topic }}</h2><h5 class="ml-2 text-secondary mt-2">{{ $post->user }}</h5>
                             </div>
                             <div class="d-flex flex-row align-items-center align-content-center post-title">
-                                <span class="bdge mr-1" data-text="">{{ $post->category }}</span>
+                                <span class="mr-1 text-uppercase text-primary" data-text="">{{ $post->category }}</span>
                                 <span class="mr-2 dot"></span><span>{{ \Illuminate\Support\Str::limit($post->created_at, 16, '') }}</span>
                             </div>
                         </div>

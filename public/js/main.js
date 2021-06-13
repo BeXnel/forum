@@ -1,9 +1,9 @@
 function myFunction() {
-    document.getElementById("comment").innerHTML = "Paragraph changed!";
+    document.getElementById("content").innerHTML = "Paragraph changed!";
   }
 
   function makeInput() {
-    e = document.getElementById("comment")
+    e = document.getElementById("content")
     e.innerHTML = '<input class="form-control" value="'+e.innerText+'">';
  }
 

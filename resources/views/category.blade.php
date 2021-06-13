@@ -27,7 +27,7 @@
         
                     <div class="coment-bottom bg-light p-2 px-4 rounded-bottom">
                         <h5>{{ \Illuminate\Support\Str::limit($post->content, 40, '') }}...</h5>
-                        <form action="{{ $post->category }}/{{ $post->id }}" method="post">
+                        <form action="{{ $post->category }}/{{ $post->id }}" method="get">
                             @csrf
                             <input class="btn text-info float-right" type="submit" value="Zobacz więcej">
                         </form>
