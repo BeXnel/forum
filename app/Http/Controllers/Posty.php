@@ -118,7 +118,7 @@ class Posty extends Controller
     public function delete(Request $request)
     {
         Post::where('id', $request->id)->delete();  
-
+        Comment::where('id_post', $request->id)->delete();
         return redirect('/posty');
     }
 

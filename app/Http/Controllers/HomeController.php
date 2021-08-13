@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\DB;
+
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Queue\RedisQueue;
 
 class HomeController extends Controller
@@ -32,17 +34,18 @@ class HomeController extends Controller
         $count = Post::where('status', 'published')->count('id');
         $views = Post::sum('views');
         $max = Post::max('views');
-        $popular = Post::where('views', $max)->get();
+        $popular = Post::where('views', $max)->where('status', 'published')->first();
 
-        return view('home', compact('posts'), ['count' => $count, 'views' => $views, 'max' => $max, 'popular' => $popular]);
+        if(Auth::check())
+        {
+            return view('home', compact('posts'), ['count' => $count, 'views' => $views, 'max' => $max, 'popular' => $popular]);
+        }else{
+            return view('not_logged_in');
+        }     
     }
 
     public function store(Request $request)
     {
-        $messages = [
-            'topic.max:120' => 'Maksymalna ilość znaków to 120',     
-          ];
-
         $request->validate(
             [
                 'user' => 'required',
@@ -50,11 +53,16 @@ class HomeController extends Controller
                 'topic' => 'required|min:3|max:120',
                 'category' => 'required',
                 'content' => 'required|min:3',
-            ], $messages
-            );
+            ]);
             Post::create($request->all());
+            User::where('name', $request->user)->increment('posts', 1);
 
-            return redirect('/home');
+            if(Auth::check())
+            {
+                return redirect('/home');
+            }else{
+                return view('not_logged_in');
+            }     
     }
 
     public function search(Request $request)
@@ -68,7 +76,12 @@ class HomeController extends Controller
         $search = Post::select()->where(DB::raw("(status = 'published' and topic like '%$search_query%') OR (status = 'published' and content like '%$search_query%')"))->get();
 
         $search_count = Post::select()->where(DB::raw("(status = 'published' and topic like '%$search_query%') OR (status = 'published' and content like '%$search_query%')"))->count();
-        return view('search', compact('search'), compact('search_count'));
+        
+        if(Auth::check())
+        {
+            return view('search', compact('search'), compact('search_count'));
+        }else{
+            return view('not_logged_in');
+        }    
     }
-
 }

@@ -205,8 +205,9 @@
 
             @yield('stats')
 
-            @yield('user_panel')
+            @yield('account_panel')
 
+            @yield('account_edit')
 
         </main>
     </div>

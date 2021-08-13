@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('account_panel')
+@section('account_edit')
     @foreach ($data as $item)
     @if ($item->name == Auth::user()->name)
     <div class="container col-4 bg-light mt-4 rounded p-4">
@@ -13,13 +13,15 @@
                 <div class="row">
                     <table class="table table-user-information">
                       <tbody>
+                        <form action="/konto/edycja" id="edit" method="post">
+                          @csrf
                           <tr>
                           <td>Nazwa użytkownika</td>
-                          <td>{{ Auth::user()->name }}</td>
+                          <td><input name="name" type="text" class="form-control" value="{{ Auth::user()->name }}"></td>
                         </tr>
                         <tr>
                           <td>Email</td>
-                          <td>{{ $item->email }}</td>
+                          <td><input name="email" type="text" class="form-control" value="{{ $item->email }}"></td>
                         </tr>
                           <td>Zarejestrowany od</td>
                           <td>{{ \Illuminate\Support\Str::limit($item->created_at, 10, '') }}</td> 
@@ -31,6 +33,8 @@
                           <td>Liczba opublikowanych postów</td>
                           <td>{{ $published }}</td>
                         </tr>
+                        <input type="hidden" name="id" value="{{ $item->id }}">
+                      </form>
                       </tbody>
                     </table>
                   </div>
@@ -39,15 +43,11 @@
             </div>
             <div class="col text-center">
                 <div class="row align-center">
-                  <form action="/konto/edycja" method="get" class="col">
-                    @csrf
-                    <input type="hidden" name="id" value="{{ $item->id }}">
-                    <input type="submit" class="btn btn-primary center" value="Edytuj dane" disabled>
-                  </form>
+                    <button type="submit" class="btn btn-primary center col" form="edit">Zapisz zmiany</button>
                   <form action="/konto/zmien_haslo" method="post" class="col">
                     @csrf
                     <input type="hidden" name="id" value="{{ $item->id }}">
-                    <input type="submit" class="btn btn-primary center" value="Zresetuj hasło" disabled>
+                    <input type="submit" class="btn btn-primary center col " value="Zresetuj hasło">
                   </form>
                 </div>
           </div>

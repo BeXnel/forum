@@ -31,7 +31,7 @@ Route::post('/posty/usun', "App\Http\Controllers\Posty@delete");
 
 Route::post('/posty/kategoria/{category}', "App\Http\Controllers\Posty@comment");
 
-Route::get('konto', "App\Http\Controllers\AccountController@show");
+Route::get('konto', "App\Http\Controllers\AccountController@show")->name('account');
 
 Route::post('/home','App\Http\Controllers\HomeController@store');
 Route::post('/home/search','App\Http\Controllers\HomeController@search');

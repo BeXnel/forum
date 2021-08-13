@@ -15,11 +15,27 @@ class AccountController extends Controller
         {
             $data = User::all();
             $posts = Post::where('user', Auth::user()->name)->count('id');
-            $published = "siema";
-            return view('account_panel', compact('data'), compact('posts'), compact('published'));
+            $published = Post::where('user', Auth::user()->name)->where('status', 'published')->count('id');
+            return view('account_panel', ['data' => $data, 'posts' => $posts, 'published' => $published]);
         }else{
             return view('not_logged_in');
         }
-        
+    }
+    
+    public function edit(Request $request)
+    {
+        if(Auth::check())
+        {
+            $request->validate([
+                'id' => 'required'
+            ]);
+
+            $data = User::all();
+            $posts = Post::where('user', Auth::user()->name)->count('id');
+            $published = Post::where('user', Auth::user()->name)->where('status', 'published')->count('id');
+            return view('account_edit', ['data' => $data, 'posts' => $posts, 'published' => $published]);
+        }else{
+            return view('not_logged_in');
+        }
     }
 }

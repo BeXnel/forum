@@ -15,9 +15,12 @@ class Posts extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->text('status');
             $table->text('user');
             $table->text('email');
-            $table->text('comment');
+            $table->text('category');
+            $table->text('content');
+            $table->integer('views')->nullable();
             $table->timestamps();
         });
     }
