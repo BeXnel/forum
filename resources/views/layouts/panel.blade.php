@@ -27,7 +27,7 @@
     </style>
     </style>
 </head>
-<body class="bg-dark" >
+<body class="bg-dark">
     <div id="app" class="bg-dark mb-4">
         <div class="sticky-top" style="opacity: 0.9">
         <nav class="navbar navbar-expand-md navbar-light bg-secondary shadow-sm">
