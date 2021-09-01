@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('/posty', 'App\Http\Controllers\Posty@show');
 Route::get('/posty/kategoria/{category}', 'App\Http\Controllers\Posts@category');
 Route::get('/posty/statystyki/{category}', 'App\Http\Controllers\Posts@stats');
-Route::get('/posty/kategoria/{category}/{id}', 'App\Http\Controllers\Posts@show_more')->name('show_more');
+Route::get('/posty/kategoria/{category}/{id}', 'App\Http\Controllers\Posts@showMore')->name('showMore');
 
 Route::post('/posty/opublikuj', "App\Http\Controllers\Posts@publish");
 Route::post('/posty/cofnij_publikacje', "App\Http\Controllers\Posts@unpublish");

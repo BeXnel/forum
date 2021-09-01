@@ -22,7 +22,7 @@ class Posty extends Controller
         }
     }
 
-    public function show_more($category, $id)
+    public function showMore($category, $id)
     {
         Post::where('id', $id)->increment('views', 1);
 
