@@ -4,8 +4,8 @@
 /storage/*.key
 /vendor
 .env
-/.vscode
 .env.backup
+.vscode
 .phpunit.result.cache
 docker-compose.override.yml
 Homestead.json
