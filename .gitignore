@@ -4,7 +4,7 @@
 /storage/*.key
 /vendor
 .env
-.vscode
+/.vscode
 .env.backup
 .phpunit.result.cache
 docker-compose.override.yml
