@@ -19,17 +19,17 @@ Route::get('/', function () {
 });
 
 Route::get('/posty', 'App\Http\Controllers\Posty@show');
-Route::get('/posty/kategoria/{category}', 'App\Http\Controllers\Posty@category');
-Route::get('/posty/statystyki/{category}', 'App\Http\Controllers\Posty@stats');
-Route::get('/posty/kategoria/{category}/{id}', 'App\Http\Controllers\Posty@show_more')->name('show_more');
+Route::get('/posty/kategoria/{category}', 'App\Http\Controllers\Posts@category');
+Route::get('/posty/statystyki/{category}', 'App\Http\Controllers\Posts@stats');
+Route::get('/posty/kategoria/{category}/{id}', 'App\Http\Controllers\Posts@showMore')->name('showMore');
 
-Route::post('/posty/opublikuj', "App\Http\Controllers\Posty@publish");
-Route::post('/posty/cofnij_publikacje', "App\Http\Controllers\Posty@unpublish");
-Route::post('/posty/edycja', "App\Http\Controllers\Posty@edit");
-Route::post('/posty/edycja/zapisz', "App\Http\Controllers\Posty@save");
-Route::post('/posty/usun', "App\Http\Controllers\Posty@delete");
+Route::post('/posty/opublikuj', "App\Http\Controllers\Posts@publish");
+Route::post('/posty/cofnij_publikacje', "App\Http\Controllers\Posts@unpublish");
+Route::post('/posty/edycja', "App\Http\Controllers\Posts@edit");
+Route::post('/posty/edycja/zapisz', "App\Http\Controllers\Posts@save");
+Route::post('/posty/usun', "App\Http\Controllers\Posts@delete");
 
-Route::post('/posty/kategoria/{category}', "App\Http\Controllers\Posty@comment");
+Route::post('/posty/kategoria/{category}', "App\Http\Controllers\Posts@comment");
 
 Route::get('konto', "App\Http\Controllers\AccountController@show")->name('account');
 

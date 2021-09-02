@@ -36,7 +36,7 @@ class HomeController extends Controller
         $max = Post::max('views');
         $popular = Post::where('views', $max)->where('status', 'published')->first();
 
-        if(Auth::check())
+        if (Auth::check())
         {
             return view('home', compact('posts'), ['count' => $count, 'views' => $views, 'max' => $max, 'popular' => $popular]);
         }else{
@@ -57,7 +57,7 @@ class HomeController extends Controller
             Post::create($request->all());
             User::where('name', $request->user)->increment('posts', 1);
 
-            if(Auth::check())
+            if (Auth::check())
             {
                 return redirect('/home');
             }else{
@@ -77,7 +77,7 @@ class HomeController extends Controller
 
         $search_count = Post::select()->where(DB::raw("(status = 'published' and topic like '%$search_query%') OR (status = 'published' and content like '%$search_query%')"))->count();
         
-        if(Auth::check())
+        if (Auth::check())
         {
             return view('search', compact('search'), compact('search_count'));
         }else{

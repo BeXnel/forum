@@ -14,7 +14,7 @@ class Posty extends Controller
     {
         $posts = Post::all();
 
-        if(Auth::check())
+        if (Auth::check())
         {
             return view('panel.posts', compact('posts'));
         }else{
@@ -22,7 +22,7 @@ class Posty extends Controller
         }
     }
 
-    public function show_more($category, $id)
+    public function showMore($category, $id)
     {
         Post::where('id', $id)->increment('views', 1);
 
@@ -31,7 +31,7 @@ class Posty extends Controller
 
         $comments = Comment::where('id_post', $id)->get();
         
-        if(Auth::check())
+        if (Auth::check())
         {
             return view('category_show_more', ['comments' => $comments, 'posts' => $posts, 'posts_count' => $posts_count]);
         }else{
@@ -44,7 +44,7 @@ class Posty extends Controller
         $posts = Post::where('category', $category)->where('status', 'published')->get();
         $posts_count = Post::where('category', $category)->where('status', 'published')->count('id');
 
-        if(Auth::check())
+        if (Auth::check())
         {
             return view('category', compact('posts'), compact('posts_count'));
         }else{
@@ -69,7 +69,7 @@ class Posty extends Controller
         $unpublished = Post::where('category', $category)->where('status', 'draft')->count('id');
         $views = Post::where('category', $category)->sum('views');
 
-        if(Auth::check())
+        if (Auth::check())
         {
             return view('stats', 
         [

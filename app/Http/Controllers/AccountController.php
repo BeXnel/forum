@@ -11,7 +11,7 @@ class AccountController extends Controller
 {
     public function show()
     {
-        if(Auth::check())
+        if (Auth::check())
         {
             $data = User::all();
             $posts = Post::where('user', Auth::user()->name)->count('id');
@@ -24,7 +24,7 @@ class AccountController extends Controller
     
     public function edit(Request $request)
     {
-        if(Auth::check())
+        if (Auth::check())
         {
             $request->validate([
                 'id' => 'required'
