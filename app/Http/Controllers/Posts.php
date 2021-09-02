@@ -18,7 +18,7 @@ class Posty extends Controller
         {
             return view('panel.posts', compact('posts'));
         }else{
-            return view('not_logged_in');
+            return view('not_logged_in ');
         }
     }
 
