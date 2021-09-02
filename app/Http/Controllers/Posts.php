@@ -8,7 +8,7 @@ use App\Models\Comment;
 
 use Illuminate\Http\Request;
 
-class Posty extends Controller
+class Posts extends Controller
 {
     public function show()
     {
@@ -59,7 +59,7 @@ class Posty extends Controller
             'comment' => 'required|min:3'
         ]);
         Comment::create($request->all());
-        return redirect()->route('show_more', ['category' => $category, 'id' => $request->id_post]);
+        return redirect()->route('showMore', ['category' => $category, 'id' => $request->id_post]);
     }
 
     public function stats($category)

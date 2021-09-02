@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Posts;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/posty', 'App\Http\Controllers\Posty@show');
+Route::get('/posty', 'App\Http\Controllers\Posts@show');
 Route::get('/posty/kategoria/{category}', 'App\Http\Controllers\Posts@category');
 Route::get('/posty/statystyki/{category}', 'App\Http\Controllers\Posts@stats');
 Route::get('/posty/kategoria/{category}/{id}', 'App\Http\Controllers\Posts@showMore')->name('showMore');
